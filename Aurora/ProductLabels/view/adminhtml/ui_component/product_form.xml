@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Element/ui_component/UiComponent.xsd">
+    <fieldset name="content">
+        <settings>
+            <label />
+            <collapsible>true</collapsible>
+        </settings>
+        <field name="label_ids" formElement="multiselect">
+            <settings>
+                <label translate="true">Select Labels</label>
+                <dataScope>label_ids</dataScope>
+                <dataType>array</dataType>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Aurora\ProductLabels\Model\Source\LabelOptions"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

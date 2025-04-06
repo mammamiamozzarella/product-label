@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">aurora_label_listing.aurora_label_listing_data_source</item>
+            <item name="deps" xsi:type="string">aurora_label_listing.aurora_label_listing_data_source</item>
+        </item>
+        <item name="spinner" xsi:type="string">aurora_label_columns</item>
+        <item name="buttons" xsi:type="array">
+            <item name="add" xsi:type="array">
+                <item name="name" xsi:type="string">add</item>
+                <item name="label" xsi:type="string">Add new label</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">aurora/label/edit</item>
+            </item>
+        </item>
+    </argument>
+    <dataSource name="aurora_label_listing_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Aurora\ProductLabels\Ui\DataProvider\Label\ListingDataProvider</argument>
+            <argument name="name" xsi:type="string">aurora_label_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">label_id</argument>
+            <argument name="requestFieldName" xsi:type="string">label_id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="update_url" xsi:type="url" path="mui/index/render" />
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">label_id</item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <bookmark name="bookmarks" />
+        <columnsControls name="columns_controls" />
+        <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="templates" xsi:type="array">
+                        <item name="filters" xsi:type="array">
+                            <item name="select" xsi:type="array">
+                                <item name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</item>
+                                <item name="template" xsi:type="string">ui/grid/filters/elements/ui-select</item>
+                            </item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </filters>
+        <paging name="listing_paging" />
+    </listingToolbar>
+    <columns name="aurora_label_columns">
+        <column name="label_id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <resizeDefaultWidth>25</resizeDefaultWidth>
+            </settings>
+        </column>
+        <column name="label_text">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Label Text</label>
+                <resizeDefaultWidth>100</resizeDefaultWidth>
+            </settings>
+        </column>
+        <column name="options">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Options</label>
+                <resizeDefaultWidth>100</resizeDefaultWidth>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="Aurora\ProductLabels\Ui\Component\Listing\Column\LabelActions" sortOrder="200">
+            <settings>
+                <indexField>label_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

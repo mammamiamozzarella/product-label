@@ -1,0 +1,18 @@
+<?php
+/** @var ProductLabels $viewModel */
+/** @var View $block */
+
+use Aurora\ProductLabels\ViewModel\ProductLabels;
+use Magento\Catalog\Block\Product\View;
+
+$viewModel = $block->getData('viewModel');
+$labels = $viewModel->getLabelsForProduct($block->getProduct()->getId());
+if ($labels): ?>
+    <div class="product-labels">
+        <?php foreach ($labels as $label): ?>
+            <span class="product-label">
+                <?= $label['label_text']; ?>
+            </span>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>

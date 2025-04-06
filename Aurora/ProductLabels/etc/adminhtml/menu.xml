@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Aurora_ProductLabels::labels"
+             title="Product Labels" module="Aurora_ProductLabels"
+             sortOrder="51"
+             resource="Aurora_ProductLabels::labels"/>
+        <add id="Aurora_ProductLabels::labels_list"
+             title="Labels List"
+             module="Aurora_ProductLabels"
+             sortOrder="10"
+             action="aurora/label/index"
+             resource="Aurora_ProductLabels::labels"
+             parent="Aurora_ProductLabels::labels"/>
+    </menu>
+</config>

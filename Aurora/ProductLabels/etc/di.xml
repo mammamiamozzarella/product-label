@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="aurora_grid_label_listing_data_source" xsi:type="string">AuroraGridLabelCollection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="AuroraGridLabelCollection" type="Aurora\ProductLabels\Ui\DataProvider\Label\Listing\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">aurora_labels</argument>
+            <argument name="resourceModel" xsi:type="string">Aurora\ProductLabels\Model\ResourceModel\Label</argument>
+        </arguments>
+    </virtualType>
+
+    <preference for="Aurora\ProductLabels\Api\LabelRepositoryInterface" type="Aurora\ProductLabels\Model\LabelRepository"/>
+    <preference for="Aurora\ProductLabels\Api\Data\LabelInterface" type="Aurora\ProductLabels\Model\Label"/>
+
+    <preference for="Aurora\ProductLabels\Api\ProductLabelRepositoryInterface" type="Aurora\ProductLabels\Model\ProductLabelRepository"/>
+    <preference for="Aurora\ProductLabels\Api\Data\ProductLabelInterface" type="Aurora\ProductLabels\Model\ProductLabel"/>
+</config>

@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/db_schema.xsd">
+    <table name="aurora_labels" resource="default" engine="innodb" comment="Product Labels">
+        <column name="label_id" xsi:type="int" unsigned="true" nullable="false" identity="true" comment="Label ID"/>
+        <column name="label_text" xsi:type="varchar" length="255" nullable="false" comment="Label Text"/>
+        <column name="options" xsi:type="text" nullable="true" comment="Label Options"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="label_id"/>
+        </constraint>
+    </table>
+
+    <table name="aurora_product_labels" resource="default" engine="innodb" comment="Product Labels Relation">
+        <column name="id" xsi:type="int" unsigned="true" nullable="false" identity="true" comment="Record ID"/>
+        <column name="product_id" xsi:type="int" unsigned="true" nullable="false" comment="Product ID"/>
+        <column name="label_id" xsi:type="int" unsigned="true" nullable="false" comment="Label ID"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+
+        <constraint xsi:type="foreign" referenceId="AURORA_PRODUCT_LABELS_PRODUCT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID"
+                    table="aurora_product_labels" column="product_id"
+                    referenceTable="catalog_product_entity" referenceColumn="entity_id"
+                    onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="AURORA_PRODUCT_LABELS_LABEL_ID_AURORA_LABELS_LABEL_ID"
+                    table="aurora_product_labels" column="label_id"
+                    referenceTable="aurora_labels" referenceColumn="label_id"
+                    onDelete="CASCADE"/>
+    </table>
+</schema>
