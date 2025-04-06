@@ -2,7 +2,6 @@
 
 namespace Aurora\ProductLabels\Test\Unit;
 
-
 use Aurora\ProductLabels\Api\Data\LabelInterface;
 use Aurora\ProductLabels\Api\LabelRepositoryInterface;
 use Magento\Framework\Exception\NoSuchEntityException;

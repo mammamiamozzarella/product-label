@@ -2,15 +2,16 @@
 
 namespace Aurora\ProductLabels\Ui\DataProvider\Label\Listing;
 
-
 use Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult;
 
 class Collection extends SearchResult
 {
     /**
-     * @var string
+     * Initialize select query with custom join to fetch label text.
+     *
+     * @return Collection
      */
-    protected function _initSelect()
+    protected function _initSelect(): static
     {
         parent::_initSelect();
         $this->getSelect()->joinLeft(
@@ -20,5 +21,5 @@ class Collection extends SearchResult
         );
 
         return $this;
-     }
+    }
 }

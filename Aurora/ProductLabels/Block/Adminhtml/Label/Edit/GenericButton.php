@@ -2,7 +2,6 @@
 
 namespace Aurora\ProductLabels\Block\Adminhtml\Label\Edit;
 
-
 use Aurora\ProductLabels\Api\LabelRepositoryInterface;
 use Magento\Backend\Block\Widget\Context;
 use Magento\Framework\Exception\NoSuchEntityException;
@@ -32,6 +31,8 @@ class GenericButton
     }
 
     /**
+     * Get label ID
+     *
      * @return mixed|null
      */
     public function getLabelId(): mixed
@@ -41,11 +42,13 @@ class GenericButton
                 $this->context->getRequest()->getParam('label_id')
             )->getId();
         } catch (NoSuchEntityException $e) {
+            return null;
         }
-        return null;
     }
 
     /**
+     * Generate URL by route and parameters
+     *
      * @param string $route
      * @param array $params
      * @return string

@@ -2,7 +2,6 @@
 
 namespace Aurora\ProductLabels\Test\Unit;
 
-
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;

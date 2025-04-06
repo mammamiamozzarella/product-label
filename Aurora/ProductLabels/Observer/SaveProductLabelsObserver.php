@@ -2,7 +2,6 @@
 
 namespace Aurora\ProductLabels\Observer;
 
-
 use Magento\Catalog\Model\Product;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
@@ -44,8 +43,10 @@ class SaveProductLabelsObserver implements ObserverInterface
     }
 
     /**
+     * Execute method to save product labels
+     *
      * @param Observer $observer
-     * @return $this
+     * @return static
      */
     public function execute(Observer $observer): static
     {

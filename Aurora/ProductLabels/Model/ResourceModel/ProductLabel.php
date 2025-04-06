@@ -3,6 +3,7 @@
 namespace Aurora\ProductLabels\Model\ResourceModel;
 
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
+use Aurora\ProductLabels\Model\ProductLabel as ProductLabelModel;
 
 class ProductLabel extends AbstractDb
 {
@@ -17,10 +18,12 @@ class ProductLabel extends AbstractDb
     protected $_table = 'aurora_product_labels';
 
     /**
+     * Construct
+     *
      * @return void
      */
     protected function _construct(): void
     {
-        $this->_init('Aurora\ProductLabels\Model\ProductLabel', 'label_id');
+        $this->_init(ProductLabelModel::class, 'label_id');
     }
 }

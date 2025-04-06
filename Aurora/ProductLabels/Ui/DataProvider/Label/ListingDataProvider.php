@@ -2,7 +2,6 @@
 
 namespace Aurora\ProductLabels\Ui\DataProvider\Label;
 
-
 use Aurora\ProductLabels\Model\ResourceModel\Label\Collection;
 use Magento\Ui\DataProvider\AbstractDataProvider;
 use Aurora\ProductLabels\Model\ResourceModel\Label\CollectionFactory;
@@ -15,9 +14,9 @@ class ListingDataProvider extends AbstractDataProvider
     protected $collection;
 
     /**
-     * @param $name
-     * @param $primaryFieldName
-     * @param $requestFieldName
+     * @param string $name
+     * @param string $primaryFieldName
+     * @param string $requestFieldName
      * @param CollectionFactory $collectionFactory
      * @param array $meta
      * @param array $data

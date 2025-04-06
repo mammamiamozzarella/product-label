@@ -2,7 +2,6 @@
 
 namespace Aurora\ProductLabels\Model;
 
-
 use Aurora\ProductLabels\Api\ProductLabelRepositoryInterface;
 use Aurora\ProductLabels\Api\Data\ProductLabelInterfaceFactory;
 use Aurora\ProductLabels\Model\ResourceModel\ProductLabel as ProductLabelResource;
@@ -43,6 +42,7 @@ class ProductLabelRepository implements ProductLabelRepositoryInterface
 
     /**
      * @inheritdoc
+     *
      * @throws LocalizedException
      */
     public function assignLabelsToProduct(int $productId, array $labelIds): void
@@ -59,6 +59,15 @@ class ProductLabelRepository implements ProductLabelRepositoryInterface
             );
 
             $newLabelIds = array_diff($labelIds, $existingLabelIds);
+
+            $labelIdsToRemove = array_diff($existingLabelIds, $labelIds);
+
+            if (!empty($labelIdsToRemove)) {
+                $connection->delete(
+                    $table,
+                    $connection->quoteInto('product_id = ? AND label_id IN (?)', [$productId, $labelIdsToRemove])
+                );
+            }
 
             foreach ($newLabelIds as $labelId) {
                 if (!empty($labelId)) {
@@ -77,6 +86,8 @@ class ProductLabelRepository implements ProductLabelRepositoryInterface
     }
 
     /**
+     * Retrieve labels by product ID
+     *
      * @param int $productId
      * @return array
      */
@@ -100,5 +111,27 @@ class ProductLabelRepository implements ProductLabelRepositoryInterface
             ->where('apl.product_id = :product_id');
 
         return $connection->fetchAll($select, ['product_id' => $productId]);
+    }
+
+    /**
+     * Retrieve label IDs by product ID
+     *
+     * @param int $productId
+     * @return array
+     */
+    public function getLabelsIdsByProductId(int $productId): array
+    {
+        $connection = $this->resourceConnection->getConnection();
+
+        $productLabelsTable = $this->resourceConnection->getTableName('aurora_product_labels');
+
+        $select = $connection->select()
+            ->from(
+                ['apl' => $productLabelsTable],
+                ['label_id']
+            )
+            ->where('apl.product_id = :product_id');
+
+        return $connection->fetchCol($select, ['product_id' => $productId]);
     }
 }

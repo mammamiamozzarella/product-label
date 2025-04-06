@@ -2,7 +2,6 @@
 
 namespace Aurora\ProductLabels\Model;
 
-
 use Magento\Framework\Model\AbstractModel;
 use Aurora\ProductLabels\Api\Data\LabelInterface;
 
@@ -10,6 +9,8 @@ class Label extends AbstractModel implements LabelInterface
 {
 
     /**
+     * Constructor
+     *
      * @return void
      */
     protected function _construct(): void
@@ -18,6 +19,8 @@ class Label extends AbstractModel implements LabelInterface
     }
 
     /**
+     * Get the ID of the label
+     *
      * @return mixed
      */
     public function getLabelId(): mixed
@@ -26,15 +29,19 @@ class Label extends AbstractModel implements LabelInterface
     }
 
     /**
-     * @param $id
+     * Set the ID of the label
+     *
+     * @param int $id
      * @return $this
      */
-    public function setLabelId($id): static
+    public function setLabelId(int $id): static
     {
         return $this->setData(self::LABEL_ID, $id);
     }
 
     /**
+     * Get label text
+     *
      * @return string|null
      */
     public function getLabelText(): ?string
@@ -43,6 +50,8 @@ class Label extends AbstractModel implements LabelInterface
     }
 
     /**
+     * Set label text
+     *
      * @param string $text
      * @return $this
      */
@@ -52,6 +61,8 @@ class Label extends AbstractModel implements LabelInterface
     }
 
     /**
+     * Get options
+     *
      * @return string|null
      */
     public function getOptions(): ?string
@@ -60,6 +71,8 @@ class Label extends AbstractModel implements LabelInterface
     }
 
     /**
+     * Set options
+     *
      * @param string $options
      * @return $this
      */

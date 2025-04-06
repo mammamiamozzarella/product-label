@@ -1,9 +1,11 @@
 <?php
 /** @var ProductLabels $viewModel */
 /** @var View $block */
+/** @var Escaper $escaper */
 
 use Aurora\ProductLabels\ViewModel\ProductLabels;
 use Magento\Catalog\Block\Product\View;
+use Magento\Framework\Escaper;
 
 $viewModel = $block->getData('viewModel');
 $labels = $viewModel->getLabelsForProduct($block->getProduct()->getId());
@@ -11,7 +13,7 @@ if ($labels): ?>
     <div class="product-labels">
         <?php foreach ($labels as $label): ?>
             <span class="product-label">
-                <?= $label['label_text']; ?>
+                <?= $escaper->escapeHtml($label['label_text']); ?>
             </span>
         <?php endforeach; ?>
     </div>

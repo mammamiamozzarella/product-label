@@ -2,7 +2,6 @@
 
 namespace Aurora\ProductLabels\Test\Unit\ViewModel;
 
-
 use Aurora\ProductLabels\Api\Data\LabelInterface;
 use Magento\Framework\View\Element\BlockInterface;
 use PHPUnit\Framework\TestCase;

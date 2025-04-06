@@ -2,7 +2,6 @@
 
 namespace Aurora\ProductLabels\Model\ResourceModel\ProductLabel;
 
-
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 use Aurora\ProductLabels\Model\ProductLabel;
 use Aurora\ProductLabels\Model\ResourceModel\ProductLabel as ProductLabelResourceModel;
@@ -25,6 +24,8 @@ class Collection extends AbstractCollection
     protected $_resourceModel = ProductLabelResourceModel::class;
 
     /**
+     * Construct
+     *
      * @return void
      */
     protected function _construct(): void

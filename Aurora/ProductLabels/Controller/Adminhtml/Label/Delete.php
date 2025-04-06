@@ -2,7 +2,6 @@
 
 namespace Aurora\ProductLabels\Controller\Adminhtml\Label;
 
-
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Aurora\ProductLabels\Model\LabelFactory;
@@ -11,10 +10,9 @@ use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\LocalizedException;
 
-
 class Delete extends Action
 {
-    const ADMIN_RESOURCE = 'Aurora_ProductLabels::label';
+    public const ADMIN_RESOURCE = 'Aurora_ProductLabels::label';
 
     /**
      * @var LabelFactory
@@ -34,6 +32,8 @@ class Delete extends Action
     }
 
     /**
+     * Execute the action
+     *
      * @return ResultInterface|ResponseInterface|Redirect
      */
     public function execute(): ResultInterface|ResponseInterface|Redirect

@@ -2,7 +2,6 @@
 
 namespace Aurora\ProductLabels\Ui\Component\Listing\Column;
 
-
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Ui\Component\Listing\Columns\Column;
@@ -10,9 +9,9 @@ use Magento\Framework\UrlInterface;
 
 class LabelActions extends Column
 {
-    const EDIT_URL = 'aurora/label/edit';
+    public const EDIT_URL = 'aurora/label/edit';
 
-    const DELETE_URL = 'aurora/label/delete';
+    public const DELETE_URL = 'aurora/label/delete';
 
     /**
      * @var UrlInterface
@@ -32,13 +31,14 @@ class LabelActions extends Column
         UiComponentFactory $uiComponentFactory,
         array $components = [],
         array $data = []
-    )
-    {
+    ) {
         $this->urlBuilder = $urlBuilder;
         parent::__construct($context, $uiComponentFactory, $components, $data);
     }
 
     /**
+     * Prepare data source for the grid
+     *
      * @param array $dataSource
      * @return array
      */

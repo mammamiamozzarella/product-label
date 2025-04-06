@@ -2,8 +2,8 @@
 
 namespace Aurora\ProductLabels\Controller\Adminhtml\Label;
 
-
 use Magento\Backend\App\Action;
+use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\View\Result\PageFactory;
 use Aurora\ProductLabels\Api\LabelRepositoryInterface;
 use Magento\Backend\Model\View\Result\Page;
@@ -11,7 +11,7 @@ use Magento\Framework\Exception\LocalizedException;
 
 class Edit extends Action
 {
-    const ADMIN_RESOURCE = 'Aurora_ProductLabels::labels';
+    public const ADMIN_RESOURCE = 'Aurora_ProductLabels::labels';
 
     /**
      * @var PageFactory
@@ -38,7 +38,12 @@ class Edit extends Action
         parent::__construct($context);
     }
 
-    public function execute()
+    /**
+     * Execute method to edit label
+     *
+     * @return Page|ResultInterface
+     */
+    public function execute(): ResultInterface|Page
     {
         $id = $this->getRequest()->getParam('label_id');
         $model = null;

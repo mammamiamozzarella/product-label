@@ -2,7 +2,6 @@
 
 namespace Aurora\ProductLabels\Model;
 
-
 use Aurora\ProductLabels\Api\Data\ProductLabelInterface;
 use Magento\Framework\Model\AbstractModel;
 
@@ -19,6 +18,8 @@ class ProductLabel extends AbstractModel implements ProductLabelInterface
     protected $_primaryKey = 'label_id';
 
     /**
+     * Construct
+     *
      * @return void
      */
     protected function _construct(): void
@@ -27,7 +28,9 @@ class ProductLabel extends AbstractModel implements ProductLabelInterface
     }
 
     /**
-     * @return int
+     * Get label ID
+     *
+     * @return mixed
      */
     public function getLabelId(): mixed
     {
@@ -35,6 +38,8 @@ class ProductLabel extends AbstractModel implements ProductLabelInterface
     }
 
     /**
+     * Set label ID
+     *
      * @param int $labelId
      * @return void
      */
@@ -44,23 +49,8 @@ class ProductLabel extends AbstractModel implements ProductLabelInterface
     }
 
     /**
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->_getData('name');
-    }
-
-    /**
-     * @param string $name
-     * @return void
-     */
-    public function setName(string $name): void
-    {
-        $this->setData('name', $name);
-    }
-
-    /**
+     * Get product ID
+     *
      * @return mixed
      */
     public function getProductId(): mixed
@@ -69,10 +59,12 @@ class ProductLabel extends AbstractModel implements ProductLabelInterface
     }
 
     /**
-     * @param $productId
+     * Set product ID
+     *
+     * @param int $productId
      * @return void
      */
-    public function setProductId($productId): void
+    public function setProductId(int $productId): void
     {
         $this->setData('product_id', $productId);
     }

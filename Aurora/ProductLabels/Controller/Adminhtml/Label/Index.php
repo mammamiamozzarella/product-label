@@ -2,7 +2,6 @@
 
 namespace Aurora\ProductLabels\Controller\Adminhtml\Label;
 
-
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\ResponseInterface;
@@ -11,7 +10,7 @@ use Magento\Framework\View\Result\PageFactory;
 
 class Index extends Action
 {
-    const ADMIN_RESOURCE = 'Aurora_ProductLabels::labels';
+    public const ADMIN_RESOURCE = 'Aurora_ProductLabels::labels';
 
     /**
      * @var PageFactory
@@ -30,9 +29,10 @@ class Index extends Action
         $this->resultPageFactory = $resultPageFactory;
     }
 
-
     /**
-     * @return ResponseInterface|ResultInterface
+     * Execute action based on request and return result
+     *
+     * @return ResultInterface|ResponseInterface
      */
     public function execute(): ResultInterface|ResponseInterface
     {

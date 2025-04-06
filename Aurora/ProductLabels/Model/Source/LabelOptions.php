@@ -2,7 +2,6 @@
 
 namespace Aurora\ProductLabels\Model\Source;
 
-
 use Magento\Eav\Model\Entity\Attribute\Source\AbstractSource;
 use Aurora\ProductLabels\Api\LabelRepositoryInterface;
 
@@ -22,6 +21,8 @@ class LabelOptions extends AbstractSource
     }
 
     /**
+     * Get all label options
+     *
      * @return array
      */
     public function getAllOptions(): array

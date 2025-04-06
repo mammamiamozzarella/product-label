@@ -2,7 +2,6 @@
 
 namespace Aurora\ProductLabels\Model;
 
-
 use Aurora\ProductLabels\Api\LabelRepositoryInterface;
 use Aurora\ProductLabels\Api\Data\LabelInterface;
 use Aurora\ProductLabels\Model\ResourceModel\Label as LabelResource;
@@ -32,6 +31,8 @@ class LabelRepository implements LabelRepositoryInterface
     }
 
     /**
+     * Get label by ID
+     *
      * @param int $id
      * @return LabelInterface
      * @throws NoSuchEntityException
@@ -47,6 +48,8 @@ class LabelRepository implements LabelRepositoryInterface
     }
 
     /**
+     * Save label
+     *
      * @param LabelInterface $label
      * @return LabelInterface
      * @throws AlreadyExistsException
@@ -58,6 +61,10 @@ class LabelRepository implements LabelRepositoryInterface
     }
 
     /**
+     * Delete label
+     *
+     * @param LabelInterface $label
+     * @return bool
      * @throws Exception
      */
     public function delete(LabelInterface $label): bool
@@ -67,6 +74,8 @@ class LabelRepository implements LabelRepositoryInterface
     }
 
     /**
+     * Get all labels
+     *
      * @return array|LabelInterface[]
      */
     public function getAllLabels(): array

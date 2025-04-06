@@ -2,7 +2,6 @@
 
 namespace Aurora\ProductLabels\Controller\Adminhtml\Label;
 
-
 use Magento\Backend\App\Action;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\Result\JsonFactory;
@@ -13,7 +12,7 @@ use Aurora\ProductLabels\Model\LabelFactory;
 
 class Save extends Action
 {
-    const ADMIN_RESOURCE = 'Aurora_ProductLabels::labels';
+    public const ADMIN_RESOURCE = 'Aurora_ProductLabels::labels';
 
     /**
      * @var LabelRepositoryInterface
@@ -49,6 +48,8 @@ class Save extends Action
     }
 
     /**
+     * Execute method to save label
+     *
      * @return ResultInterface|ResponseInterface
      */
     public function execute(): ResultInterface|ResponseInterface

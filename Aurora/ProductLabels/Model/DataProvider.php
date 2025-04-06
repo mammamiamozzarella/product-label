@@ -2,7 +2,6 @@
 
 namespace Aurora\ProductLabels\Model;
 
-
 use Aurora\ProductLabels\Model\ResourceModel\Label\CollectionFactory;
 use Magento\Ui\DataProvider\AbstractDataProvider;
 
@@ -14,9 +13,9 @@ class DataProvider extends AbstractDataProvider
     protected array $loadedData;
 
     /**
-     * @param $name
-     * @param $primaryFieldName
-     * @param $requestFieldName
+     * @param string $name
+     * @param string $primaryFieldName
+     * @param string $requestFieldName
      * @param CollectionFactory $labelCollectionFactory
      * @param array $meta
      * @param array $data
@@ -34,6 +33,8 @@ class DataProvider extends AbstractDataProvider
     }
 
     /**
+     * Retrieve data
+     *
      * @return array
      */
     public function getData(): array
