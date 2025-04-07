@@ -7,17 +7,13 @@ use Aurora\ProductLabels\Api\LabelRepositoryInterface;
 
 class LabelOptions extends AbstractSource
 {
-    /**
-     * @var LabelRepositoryInterface
-     */
-    protected LabelRepositoryInterface $labelRepository;
 
     /**
      * @param LabelRepositoryInterface $labelRepository
      */
-    public function __construct(LabelRepositoryInterface $labelRepository)
-    {
-        $this->labelRepository = $labelRepository;
+    public function __construct(
+        private readonly LabelRepositoryInterface $labelRepository
+    ) {
     }
 
     /**

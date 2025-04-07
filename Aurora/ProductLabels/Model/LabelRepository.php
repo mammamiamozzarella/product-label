@@ -11,6 +11,7 @@ use Magento\Framework\Exception\AlreadyExistsException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\Api\SearchResultsInterfaceFactory;
+use Magento\Framework\Exception\CouldNotDeleteException;
 
 class LabelRepository implements LabelRepositoryInterface
 {
@@ -88,5 +89,23 @@ class LabelRepository implements LabelRepositoryInterface
         }
 
         return $labels;
+    }
+
+    /**
+     * Delete label by ID
+     *
+     * @param int $id
+     * @return bool
+     * @throws NoSuchEntityException
+     * @throws CouldNotDeleteException
+     */
+    public function deleteById(int $id): bool
+    {
+        $label = $this->getById($id);
+        try {
+            return $this->delete($label);
+        } catch (\Exception $e) {
+            throw new CouldNotDeleteException(__('Could not delete label with ID %1', $id));
+        }
     }
 }

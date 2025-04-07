@@ -13,33 +13,15 @@ use Magento\Framework\Message\ManagerInterface;
 class SaveProductLabelsObserver implements ObserverInterface
 {
     /**
-     * @var RequestInterface
-     */
-    protected RequestInterface $request;
-
-    /**
-     * @var ProductLabelRepositoryInterface
-     */
-    protected ProductLabelRepositoryInterface $labelRepository;
-
-    /**
-     * @var ManagerInterface
-     */
-    protected ManagerInterface $messageManager;
-
-    /**
      * @param RequestInterface $request
      * @param ProductLabelRepositoryInterface $labelRepository
      * @param ManagerInterface $messageManager
      */
     public function __construct(
-        RequestInterface $request,
-        ProductLabelRepositoryInterface $labelRepository,
-        ManagerInterface $messageManager
+        private readonly RequestInterface $request,
+        private readonly ProductLabelRepositoryInterface $labelRepository,
+        private readonly ManagerInterface $messageManager
     ) {
-        $this->request = $request;
-        $this->labelRepository = $labelRepository;
-        $this->messageManager = $messageManager;
     }
 
     /**

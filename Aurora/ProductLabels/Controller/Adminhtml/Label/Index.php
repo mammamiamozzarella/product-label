@@ -13,20 +13,14 @@ class Index extends Action
     public const ADMIN_RESOURCE = 'Aurora_ProductLabels::labels';
 
     /**
-     * @var PageFactory
-     */
-    protected $resultPageFactory;
-
-    /**
      * @param Context $context
      * @param PageFactory $resultPageFactory
      */
     public function __construct(
         Context $context,
-        PageFactory $resultPageFactory
+        private readonly PageFactory $resultPageFactory
     ) {
         parent::__construct($context);
-        $this->resultPageFactory = $resultPageFactory;
     }
 
     /**

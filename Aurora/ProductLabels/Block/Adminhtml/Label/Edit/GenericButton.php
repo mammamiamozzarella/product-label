@@ -9,25 +9,13 @@ use Magento\Framework\Exception\NoSuchEntityException;
 class GenericButton
 {
     /**
-     * @var Context
-     */
-    protected Context $context;
-
-    /**
-     * @var LabelRepositoryInterface
-     */
-    protected LabelRepositoryInterface $labelRepository;
-
-    /**
      * @param Context $context
      * @param LabelRepositoryInterface $labelRepository
      */
     public function __construct(
-        Context $context,
-        LabelRepositoryInterface $labelRepository
+        private readonly Context $context,
+        private readonly LabelRepositoryInterface $labelRepository
     ) {
-        $this->context = $context;
-        $this->labelRepository = $labelRepository;
     }
 
     /**

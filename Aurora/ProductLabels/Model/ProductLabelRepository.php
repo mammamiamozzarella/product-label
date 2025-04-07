@@ -3,41 +3,19 @@
 namespace Aurora\ProductLabels\Model;
 
 use Aurora\ProductLabels\Api\ProductLabelRepositoryInterface;
-use Aurora\ProductLabels\Api\Data\ProductLabelInterfaceFactory;
-use Aurora\ProductLabels\Model\ResourceModel\ProductLabel as ProductLabelResource;
 use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\Exception\LocalizedException;
+use Aurora\ProductLabels\Model\ResourceModel\ProductLabel;
+use Aurora\ProductLabels\Model\ResourceModel\Label;
 
 class ProductLabelRepository implements ProductLabelRepositoryInterface
 {
     /**
-     * @var ProductLabelInterfaceFactory
-     */
-    protected ProductLabelInterfaceFactory $productLabelFactory;
-
-    /**
-     * @var ProductLabelResource
-     */
-    protected ProductLabelResource $productLabelResource;
-
-    /**
-     * @var ResourceConnection
-     */
-    protected ResourceConnection $resourceConnection;
-
-    /**
-     * @param ProductLabelInterfaceFactory $productLabelFactory
-     * @param ProductLabelResource $productLabelResource
      * @param ResourceConnection $resourceConnection
      */
     public function __construct(
-        ProductLabelInterfaceFactory $productLabelFactory,
-        ProductLabelResource $productLabelResource,
-        ResourceConnection $resourceConnection
+        private readonly ResourceConnection $resourceConnection
     ) {
-        $this->productLabelFactory = $productLabelFactory;
-        $this->productLabelResource = $productLabelResource;
-        $this->resourceConnection = $resourceConnection;
     }
 
     /**
@@ -48,13 +26,14 @@ class ProductLabelRepository implements ProductLabelRepositoryInterface
     public function assignLabelsToProduct(int $productId, array $labelIds): void
     {
         $connection = $this->resourceConnection->getConnection();
-        $table = $this->resourceConnection->getTableName('aurora_product_labels');
+        $table = $this->resourceConnection->getTableName(ProductLabel::TABLE_NAME);
 
         try {
             $connection->beginTransaction();
+
             $existingLabelIds = $connection->fetchCol(
                 $connection->select()
-                    ->from($table, 'label_id')
+                    ->from($table, ProductLabel::PRIMARY_KEY)
                     ->where('product_id = ?', $productId)
             );
 
@@ -63,9 +42,13 @@ class ProductLabelRepository implements ProductLabelRepositoryInterface
             $labelIdsToRemove = array_diff($existingLabelIds, $labelIds);
 
             if (!empty($labelIdsToRemove)) {
+                $labelIdsToRemoveString = implode(',', $labelIdsToRemove);
                 $connection->delete(
                     $table,
-                    $connection->quoteInto('product_id = ? AND label_id IN (?)', [$productId, $labelIdsToRemove])
+                    $connection->quoteInto(
+                        'product_id = ? AND label_id IN (' . $labelIdsToRemoveString . ')',
+                        $productId
+                    )
                 );
             }
 
@@ -95,13 +78,13 @@ class ProductLabelRepository implements ProductLabelRepositoryInterface
     {
         $connection = $this->resourceConnection->getConnection();
 
-        $productLabelsTable = $this->resourceConnection->getTableName('aurora_product_labels');
-        $labelsTable = $this->resourceConnection->getTableName('aurora_labels');
+        $productLabelsTable = $this->resourceConnection->getTableName(ProductLabel::TABLE_NAME);
+        $labelsTable = $this->resourceConnection->getTableName(Label::TABLE_NAME);
 
         $select = $connection->select()
             ->from(
                 ['apl' => $productLabelsTable],
-                ['label_id']
+                [ProductLabel::PRIMARY_KEY]
             )
             ->join(
                 ['l' => $labelsTable],
@@ -123,7 +106,7 @@ class ProductLabelRepository implements ProductLabelRepositoryInterface
     {
         $connection = $this->resourceConnection->getConnection();
 
-        $productLabelsTable = $this->resourceConnection->getTableName('aurora_product_labels');
+        $productLabelsTable = $this->resourceConnection->getTableName(ProductLabel::TABLE_NAME);
 
         $select = $connection->select()
             ->from(

@@ -9,17 +9,11 @@ use Aurora\ProductLabels\Api\ProductLabelRepositoryInterface;
 class ProductLabels implements ArgumentInterface
 {
     /**
-     * @var ProductLabelRepositoryInterface
-     */
-    protected ProductLabelRepositoryInterface $labelRepository;
-
-    /**
      * @param ProductLabelRepositoryInterface $labelRepository
      */
     public function __construct(
-        ProductLabelRepositoryInterface $labelRepository
+        private readonly ProductLabelRepositoryInterface $labelRepository
     ) {
-        $this->labelRepository = $labelRepository;
     }
 
     /**

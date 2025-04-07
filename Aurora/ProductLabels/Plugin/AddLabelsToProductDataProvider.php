@@ -9,25 +9,13 @@ use Magento\Framework\App\RequestInterface;
 class AddLabelsToProductDataProvider
 {
     /**
-     * @var ProductLabelRepositoryInterface
-     */
-    protected ProductLabelRepositoryInterface $labelRepository;
-
-    /**
-     * @var RequestInterface
-     */
-    protected RequestInterface $request;
-
-    /**
      * @param ProductLabelRepositoryInterface $labelRepository
      * @param RequestInterface $request
      */
     public function __construct(
-        ProductLabelRepositoryInterface $labelRepository,
-        RequestInterface $request
+        private readonly ProductLabelRepositoryInterface $labelRepository,
+        private readonly RequestInterface $request
     ) {
-        $this->labelRepository = $labelRepository;
-        $this->request = $request;
     }
 
     /**

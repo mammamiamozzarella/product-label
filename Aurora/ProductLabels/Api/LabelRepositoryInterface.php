@@ -36,4 +36,14 @@ interface LabelRepositoryInterface
      * @return array
      */
     public function getAllLabels(): array;
+
+    /**
+     * Delete label by ID
+     *
+     * @param int $id
+     * @return bool
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws \Magento\Framework\Exception\CouldNotDeleteException
+     */
+    public function deleteById(int $id): bool;
 }

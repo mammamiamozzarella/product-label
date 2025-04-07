@@ -14,11 +14,6 @@ class LabelActions extends Column
     public const DELETE_URL = 'aurora/label/delete';
 
     /**
-     * @var UrlInterface
-     */
-    protected UrlInterface $urlBuilder;
-
-    /**
      * @param UrlInterface $urlBuilder
      * @param ContextInterface $context
      * @param UiComponentFactory $uiComponentFactory
@@ -26,13 +21,12 @@ class LabelActions extends Column
      * @param array $data
      */
     public function __construct(
-        UrlInterface $urlBuilder,
+        private readonly UrlInterface $urlBuilder,
         ContextInterface $context,
         UiComponentFactory $uiComponentFactory,
         array $components = [],
         array $data = []
     ) {
-        $this->urlBuilder = $urlBuilder;
         parent::__construct($context, $uiComponentFactory, $components, $data);
     }
 

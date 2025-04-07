@@ -3,6 +3,7 @@
 namespace Aurora\ProductLabels\Ui\DataProvider\Label\Listing;
 
 use Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult;
+use Aurora\ProductLabels\Model\ResourceModel\Label;
 
 class Collection extends SearchResult
 {
@@ -15,8 +16,8 @@ class Collection extends SearchResult
     {
         parent::_initSelect();
         $this->getSelect()->joinLeft(
-            ['aurora_labels' => $this->getMainTable()],
-            'main_table.label_id = aurora_labels.label_id',
+            [Label::TABLE_NAME => $this->getMainTable()],
+            sprintf('main_table.%s = %s.%s', Label::PRIMARY_KEY, Label::TABLE_NAME, Label::PRIMARY_KEY),
             ['label_text']
         );
 

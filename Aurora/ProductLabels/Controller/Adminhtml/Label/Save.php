@@ -15,35 +15,15 @@ class Save extends Action
     public const ADMIN_RESOURCE = 'Aurora_ProductLabels::labels';
 
     /**
-     * @var LabelRepositoryInterface
-     */
-    protected LabelRepositoryInterface $labelRepository;
-
-    /**
-     * @var LabelFactory
-     */
-    protected LabelFactory $labelFactory;
-
-    /**
-     * @var JsonFactory
-     */
-    protected JsonFactory $resultJsonFactory;
-
-    /**
      * @param Action\Context $context
      * @param LabelRepositoryInterface $labelRepository
      * @param LabelFactory $labelFactory
-     * @param JsonFactory $resultJsonFactory
      */
     public function __construct(
         Action\Context $context,
-        LabelRepositoryInterface $labelRepository,
-        LabelFactory $labelFactory,
-        JsonFactory $resultJsonFactory
+        private readonly LabelRepositoryInterface $labelRepository,
+        private readonly LabelFactory $labelFactory,
     ) {
-        $this->labelRepository = $labelRepository;
-        $this->labelFactory = $labelFactory;
-        $this->resultJsonFactory = $resultJsonFactory;
         parent::__construct($context);
     }
 
